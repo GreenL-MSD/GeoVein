@@ -1,0 +1,5 @@
+{
+  "id": "coal",
+  "display_name": "Coal",
+  "source_ore_block": "minecraft:coal_ore"
+}

@@ -1,0 +1,5 @@
+{
+  "id": "gold",
+  "display_name": "Gold",
+  "source_ore_block": "minecraft:gold_ore"
+}
