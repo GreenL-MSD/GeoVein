@@ -43,10 +43,10 @@ public class OreChunkItem extends Item {
             @NotNull List<Component> tooltip,
             @NotNull TooltipFlag flag
     ) {
-        String oreId = stack.getOrDefault(ModDataComponents.ORE_ID.get(), "unknown");
+        String oreId = stack.getOrDefault(ModDataComponents.ORE_ID.get(), "Unknown");
         OreGrade grade = stack.getOrDefault(ModDataComponents.ORE_GRADE.get(), OreGrade.COMMON);
 
-        tooltip.add(Component.literal("Ore: " + oreId).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("Ore: " + OreDefinitions.getDisplayName(oreId)).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Grade: " + grade.getDisplayName()).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Yield: x" + grade.getYieldMultiplier()).withStyle(ChatFormatting.DARK_GRAY));
     }
