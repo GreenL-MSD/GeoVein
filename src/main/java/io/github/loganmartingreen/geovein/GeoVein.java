@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import io.github.loganmartingreen.geovein.data.OreDefinitionLoader;
 import io.github.loganmartingreen.geovein.data.OreDefinition;
-import io.github.loganmartingreen.geovein.data.OreDefinitions;
 import io.github.loganmartingreen.geovein.item.OreChunkItem;
 import io.github.loganmartingreen.geovein.ore.OreGrade;
 import io.github.loganmartingreen.geovein.component.ModDataComponents;
@@ -52,7 +52,7 @@ public class GeoVein {
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> ModItems.ORE_CHUNK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                for (OreDefinition ore : OreDefinitions.DEFINITIONS) {
+                for (OreDefinition ore : OreDefinitionLoader.getLoadedDefinitions()) {
                     for (OreGrade grade : OreGrade.values()) {
                         output.accept(OreChunkItem.create(ore.id(), grade));
                     }
@@ -62,8 +62,10 @@ public class GeoVein {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public GeoVein(IEventBus modEventBus, ModContainer modContainer) {
-        ModItems.register(modEventBus);
+        OreDefinitionLoader.loadDefaultsForNow();
+
         ModDataComponents.register(modEventBus);
+        ModItems.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
