@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import io.github.loganmartingreen.geovein.data.OreDefinition;
+import io.github.loganmartingreen.geovein.data.OreDefinitions;
 import io.github.loganmartingreen.geovein.item.OreChunkItem;
 import io.github.loganmartingreen.geovein.ore.OreGrade;
 import io.github.loganmartingreen.geovein.component.ModDataComponents;
@@ -50,8 +52,10 @@ public class GeoVein {
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> ModItems.ORE_CHUNK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                for (OreGrade grade : OreGrade.values()) {
-                    output.accept(OreChunkItem.create("copper", grade));
+                for (OreDefinition ore : OreDefinitions.DEFINITIONS) {
+                    for (OreGrade grade : OreGrade.values()) {
+                        output.accept(OreChunkItem.create(ore.id(), grade));
+                    }
                 }
             }).build());
 
