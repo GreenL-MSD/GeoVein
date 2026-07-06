@@ -1,6 +1,6 @@
 package io.github.loganmartingreen.geovein.item;
 
-import io.github.loganmartingreen.geovein.data.OreDefinitions;
+import io.github.loganmartingreen.geovein.data.OreDefinitionLoader;
 import io.github.loganmartingreen.geovein.component.ModDataComponents;
 import io.github.loganmartingreen.geovein.ore.OreGrade;
 import net.minecraft.ChatFormatting;
@@ -31,7 +31,7 @@ public class OreChunkItem extends Item {
         String oreId = stack.getOrDefault(ModDataComponents.ORE_ID.get(), "unknown");
         OreGrade grade = stack.getOrDefault(ModDataComponents.ORE_GRADE.get(), OreGrade.COMMON);
 
-        String oreName = OreDefinitions.getDisplayName(oreId);
+        String oreName = OreDefinitionLoader.getDisplayName(oreId);
 
         return Component.literal(grade.getDisplayName() + " " + oreName + " Ore Chunk");
     }
@@ -46,7 +46,7 @@ public class OreChunkItem extends Item {
         String oreId = stack.getOrDefault(ModDataComponents.ORE_ID.get(), "Unknown");
         OreGrade grade = stack.getOrDefault(ModDataComponents.ORE_GRADE.get(), OreGrade.COMMON);
 
-        tooltip.add(Component.literal("Ore: " + OreDefinitions.getDisplayName(oreId)).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("Ore: " + OreDefinitionLoader.getDisplayName(oreId)).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Grade: " + grade.getDisplayName()).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Yield: x" + grade.getYieldMultiplier()).withStyle(ChatFormatting.DARK_GRAY));
     }

@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class OreDefinitionLoader {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -20,5 +21,21 @@ public class OreDefinitionLoader {
 
     public static List<OreDefinition> getLoadedDefinitions() {
         return List.copyOf(LOADED_DEFINITIONS);
+    }
+
+    public static Optional<OreDefinition> getById(String id) {
+        for (OreDefinition definition : LOADED_DEFINITIONS) {
+            if (definition.id().equals(id)) {
+                return Optional.of(definition);
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    public static String getDisplayName(String id) {
+        return getById(id)
+                .map(OreDefinition::displayName)
+                .orElse(id);
     }
 }
