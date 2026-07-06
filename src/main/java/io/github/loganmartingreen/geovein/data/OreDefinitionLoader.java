@@ -55,6 +55,13 @@ public class OreDefinitionLoader {
         }
     }
 
+    public static void replaceLoadedDefinitions(List<OreDefinition> definitions) {
+        LOADED_DEFINITIONS.clear();
+        LOADED_DEFINITIONS.addAll(definitions);
+
+        LOGGER.info("Loaded {} GeoVein ore definitions", LOADED_DEFINITIONS.size());
+    }
+
     public static List<OreDefinition> getLoadedDefinitions() {
         return List.copyOf(LOADED_DEFINITIONS);
     }

@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import io.github.loganmartingreen.geovein.data.OreDefinitionReloadListener;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import io.github.loganmartingreen.geovein.data.OreDefinitionLoader;
 import io.github.loganmartingreen.geovein.data.OreDefinition;
 import io.github.loganmartingreen.geovein.item.OreChunkItem;
@@ -67,25 +70,10 @@ public class GeoVein {
         ModDataComponents.register(modEventBus);
         ModItems.register(modEventBus);
 
-        modEventBus.addListener(this::commonSetup);
-
         CREATIVE_MODE_TABS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-    }
-
-    private void commonSetup(FMLCommonSetupEvent event) {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.LOG_DIRT_BLOCK.getAsBoolean()) {
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-        }
-
-        LOGGER.info("{}{}", Config.MAGIC_NUMBER_INTRODUCTION.get(), Config.MAGIC_NUMBER.getAsInt());
-
-        Config.ITEM_STRINGS.get().forEach((item) -> LOGGER.info("ITEM >> {}", item));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -93,5 +81,9 @@ public class GeoVein {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+    @SubscribeEvent
+    public void addReloadListeners(AddReloadListenerEvent event) {
+        event.addListener(new OreDefinitionReloadListener());
     }
 }
