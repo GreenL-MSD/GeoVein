@@ -5,7 +5,10 @@ import java.util.Optional;
 
 public class OreDefinitions {
     public static final List<OreDefinition> DEFINITIONS = List.of(
-            new OreDefinition("copper", "Copper", "minecraft:copper_ore")
+            new OreDefinition("copper", "Copper", "minecraft:copper_ore"),
+            new OreDefinition("iron", "Iron", "minecraft:iron_ore"),
+            new OreDefinition("gold", "Gold", "minecraft:gold_ore"),
+            new OreDefinition("coal", "Coal", "minecraft:coal_ore")
     );
 
     public static Optional<OreDefinition> getById(String id) {
