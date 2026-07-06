@@ -1,5 +1,6 @@
 package io.github.loganmartingreen.geovein.item;
 
+import io.github.loganmartingreen.geovein.data.OreDefinitions;
 import io.github.loganmartingreen.geovein.component.ModDataComponents;
 import io.github.loganmartingreen.geovein.ore.OreGrade;
 import net.minecraft.ChatFormatting;
@@ -10,7 +11,6 @@ import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Locale;
 
 public class OreChunkItem extends Item {
     public OreChunkItem(Properties properties) {
@@ -31,7 +31,7 @@ public class OreChunkItem extends Item {
         String oreId = stack.getOrDefault(ModDataComponents.ORE_ID.get(), "unknown");
         OreGrade grade = stack.getOrDefault(ModDataComponents.ORE_GRADE.get(), OreGrade.COMMON);
 
-        String oreName = formatOreName(oreId);
+        String oreName = OreDefinitions.getDisplayName(oreId);
 
         return Component.literal(grade.getDisplayName() + " " + oreName + " Ore Chunk");
     }
@@ -49,37 +49,5 @@ public class OreChunkItem extends Item {
         tooltip.add(Component.literal("Ore: " + oreId).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Grade: " + grade.getDisplayName()).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Yield: x" + grade.getYieldMultiplier()).withStyle(ChatFormatting.DARK_GRAY));
-    }
-
-    private static String formatOreName(String oreId) {
-        String path = oreId;
-
-        if (oreId.contains(":")) {
-            path = oreId.split(":", 2)[1];
-        }
-
-        String[] words = path.toLowerCase(Locale.ROOT).split("_");
-        StringBuilder result = new StringBuilder();
-
-        for (String word : words) {
-            if (word.isEmpty()) {
-                continue;
-            }
-
-            if (!result.isEmpty()) {
-                result.append(" ");
-            }
-
-            result.append(Character.toUpperCase(word.charAt(0)));
-            if (word.length() > 1) {
-                result.append(word.substring(1));
-            }
-        }
-
-        if (result.isEmpty()) {
-            return "Unknown";
-        }
-
-        return result.toString();
     }
 }
