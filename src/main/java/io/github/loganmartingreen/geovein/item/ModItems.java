@@ -11,8 +11,8 @@ public class ModItems {
     public static final DeferredRegister.Items ITEMS =
             DeferredRegister.createItems(GeoVein.MODID);
 
-    public static final Supplier<Item> ORE_CHUNK =
-            ITEMS.registerSimpleItem("ore_chunk", new Item.Properties());
+    public static final Supplier<OreChunkItem> ORE_CHUNK =
+            ITEMS.register("ore_chunk", () -> new OreChunkItem(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
