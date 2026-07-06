@@ -50,10 +50,9 @@ public class GeoVein {
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> ModItems.ORE_CHUNK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(OreChunkItem.create("copper", OreGrade.POOR));
-                output.accept(OreChunkItem.create("copper", OreGrade.COMMON));
-                output.accept(OreChunkItem.create("copper", OreGrade.RICH));
-                output.accept(OreChunkItem.create("copper", OreGrade.NATIVE));
+                for (OreGrade grade : OreGrade.values()) {
+                    output.accept(OreChunkItem.create("copper", grade));
+                }
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
