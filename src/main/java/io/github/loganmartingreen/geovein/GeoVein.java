@@ -65,8 +65,6 @@ public class GeoVein {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public GeoVein(IEventBus modEventBus, ModContainer modContainer) {
-        OreDefinitionLoader.loadDefaultsForNow();
-
         ModDataComponents.register(modEventBus);
         ModItems.register(modEventBus);
 
