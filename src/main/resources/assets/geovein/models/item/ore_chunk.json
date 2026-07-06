@@ -1,6 +1,82 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/raw_copper"
-  }
+    "layer0": "geovein:item/ore_chunks/default/common"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 1000
+      },
+      "model": "geovein:item/ore_chunks/copper/poor"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1001
+      },
+      "model": "geovein:item/ore_chunks/copper/common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1002
+      },
+      "model": "geovein:item/ore_chunks/copper/rich"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 1003
+      },
+      "model": "geovein:item/ore_chunks/copper/native"
+    },
+
+    {
+      "predicate": {
+        "custom_model_data": 2000
+      },
+      "model": "geovein:item/ore_chunks/iron/poor"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2001
+      },
+      "model": "geovein:item/ore_chunks/iron/common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2002
+      },
+      "model": "geovein:item/ore_chunks/iron/rich"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2003
+      },
+      "model": "geovein:item/ore_chunks/iron/native"
+    },
+
+    {
+      "predicate": {
+        "custom_model_data": 9000
+      },
+      "model": "geovein:item/ore_chunks/default/poor"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9001
+      },
+      "model": "geovein:item/ore_chunks/default/common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9002
+      },
+      "model": "geovein:item/ore_chunks/default/rich"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9003
+      },
+      "model": "geovein:item/ore_chunks/default/native"
+    }
+  ]
 }

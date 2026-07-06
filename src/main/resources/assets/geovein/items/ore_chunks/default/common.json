@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "geovein:item/ore_chunks/default/common"
+  }
+}
