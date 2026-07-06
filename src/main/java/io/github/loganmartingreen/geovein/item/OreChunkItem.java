@@ -1,5 +1,6 @@
 package io.github.loganmartingreen.geovein.item;
 
+import io.github.loganmartingreen.geovein.ore.OreGrade;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -21,7 +22,10 @@ public class OreChunkItem extends Item {
             @NotNull List<Component> tooltip,
             @NotNull TooltipFlag flag
     ) {
+        OreGrade grade = OreGrade.COMMON;
+
         tooltip.add(Component.literal("Ore: Unknown").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Grade: Unsorted").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("Grade: " + grade.getDisplayName()).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("Yield: x" + grade.getYieldMultiplier()).withStyle(ChatFormatting.DARK_GRAY));
     }
 }
