@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import io.github.loganmartingreen.geovein.item.OreChunkItem;
+import io.github.loganmartingreen.geovein.ore.OreGrade;
+import io.github.loganmartingreen.geovein.component.ModDataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -47,24 +50,23 @@ public class GeoVein {
             .withTabsBefore(CreativeModeTabs.COMBAT)
             .icon(() -> ModItems.ORE_CHUNK.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(ModItems.ORE_CHUNK.get());
+                output.accept(OreChunkItem.create("copper", OreGrade.POOR));
+                output.accept(OreChunkItem.create("copper", OreGrade.COMMON));
+                output.accept(OreChunkItem.create("copper", OreGrade.RICH));
+                output.accept(OreChunkItem.create("copper", OreGrade.NATIVE));
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public GeoVein(IEventBus modEventBus, ModContainer modContainer) {
         ModItems.register(modEventBus);
-        // Register the commonSetup method for modloading
+        ModDataComponents.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
-        // Register the Deferred Register to the mod event bus so tabs get registered
+
         CREATIVE_MODE_TABS.register(modEventBus);
 
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
-
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 

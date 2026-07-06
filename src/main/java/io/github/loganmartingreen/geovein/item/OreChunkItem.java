@@ -1,5 +1,6 @@
 package io.github.loganmartingreen.geovein.item;
 
+import io.github.loganmartingreen.geovein.component.ModDataComponents;
 import io.github.loganmartingreen.geovein.ore.OreGrade;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -15,6 +16,14 @@ public class OreChunkItem extends Item {
         super(properties);
     }
 
+    public static ItemStack create(String oreId, OreGrade grade) {
+        ItemStack stack = new ItemStack(ModItems.ORE_CHUNK.get());
+
+        stack.set(ModDataComponents.ORE_ID.get(), oreId);
+        stack.set(ModDataComponents.ORE_GRADE.get(), grade);
+
+        return stack;
+    }
     @Override
     public void appendHoverText(
             @NotNull ItemStack stack,
@@ -22,9 +31,10 @@ public class OreChunkItem extends Item {
             @NotNull List<Component> tooltip,
             @NotNull TooltipFlag flag
     ) {
-        OreGrade grade = OreGrade.COMMON;
+        String oreId = stack.getOrDefault(ModDataComponents.ORE_ID.get(), "unknown");
+        OreGrade grade = stack.getOrDefault(ModDataComponents.ORE_GRADE.get(), OreGrade.COMMON);
 
-        tooltip.add(Component.literal("Ore: Unknown").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("Ore: " + oreId).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Grade: " + grade.getDisplayName()).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("Yield: x" + grade.getYieldMultiplier()).withStyle(ChatFormatting.DARK_GRAY));
     }
