@@ -138,7 +138,7 @@ public class GeoVeinCommands {
                     }
 
                     double distance = testDeposit.getNormalizedDistanceFromCore(pos);
-                    double density = 0.65 - distance * 0.35;
+                    double density = calculateDebugDensity(distance);
 
                     long noiseSeed = testDeposit.seed()
                             ^ ((long) x * 341873128712L)
@@ -182,5 +182,17 @@ public class GeoVeinCommands {
 
     private static String formatPos(BlockPos pos) {
         return pos.getX() + " " + pos.getY() + " " + pos.getZ();
+    }
+    private static double calculateDebugDensity(double distance) {
+        if (distance <= 0.25) {
+            return 1.0;
+        }
+
+        double fadeProgress = (distance - 0.25) / 0.75;
+        double edgeDensity = 0.30;
+
+        double density = 1.0 - fadeProgress * (1.0 - edgeDensity);
+
+        return Math.max(0.0, Math.min(1.0, density));
     }
 }

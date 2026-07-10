@@ -140,11 +140,17 @@ public class GeoVeinDepositFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private double calculateDensity(Deposit deposit, double distance) {
-        double baseDensity = deposit.ore().density();
+        if (distance <= 0.25) {
+            return 1.0;
+        }
 
-        double density = baseDensity * (1.25 - distance * 0.75);
+        double fadeProgress = (distance - 0.25) / 0.75;
 
-        return Mth.clamp(density, 0.0, 1.0);
+        double edgeDensity = Math.max(0.15, Math.min(1.0, deposit.ore().density()));
+
+        double density = 1.0 - fadeProgress * (1.0 - edgeDensity);
+
+        return Math.max(0.0, Math.min(1.0, density));
     }
 
     private double getDeterministicNoise(long seed, BlockPos pos) {
