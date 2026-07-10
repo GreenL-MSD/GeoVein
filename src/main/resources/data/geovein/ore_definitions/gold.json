@@ -1,5 +1,19 @@
 {
   "id": "gold",
   "display_name": "Gold",
-  "source_ore_block": "minecraft:gold_ore"
+  "source_ore_block": "minecraft:gold_ore",
+
+  "shape": "pipe",
+
+  "min_y": -64,
+  "max_y": 16,
+
+  "length": 160,
+  "width": 24,
+  "height": 24,
+
+  "density": 0.18,
+
+  "region_size_chunks": 32,
+  "spawn_chance_per_region": 0.12
 }

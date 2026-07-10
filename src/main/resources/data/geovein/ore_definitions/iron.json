@@ -1,5 +1,19 @@
 {
   "id": "iron",
   "display_name": "Iron",
-  "source_ore_block": "minecraft:iron_ore"
+  "source_ore_block": "minecraft:iron_ore",
+
+  "shape": "ellipsoid",
+
+  "min_y": -64,
+  "max_y": 48,
+
+  "length": 320,
+  "width": 120,
+  "height": 64,
+
+  "density": 0.28,
+
+  "region_size_chunks": 32,
+  "spawn_chance_per_region": 0.55
 }

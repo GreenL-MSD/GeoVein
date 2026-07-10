@@ -1,5 +1,19 @@
 {
   "id": "coal",
   "display_name": "Coal",
-  "source_ore_block": "minecraft:coal_ore"
+  "source_ore_block": "minecraft:coal_ore",
+
+  "shape": "sheet",
+
+  "min_y": -16,
+  "max_y": 96,
+
+  "length": 320,
+  "width": 160,
+  "height": 16,
+
+  "density": 0.35,
+
+  "region_size_chunks": 32,
+  "spawn_chance_per_region": 0.55
 }
