@@ -16,12 +16,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import io.github.loganmartingreen.geovein.component.ModDataComponents;
-import io.github.loganmartingreen.geovein.item.ModItems;
-import io.github.loganmartingreen.geovein.ore.OreGrade;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 import java.util.Optional;
 
@@ -38,8 +32,6 @@ public class GeoVeinCommands {
                                                 context.getSource(),
                                                 StringArgumentType.getString(context, "ore")
                                         ))))
-                        .then(Commands.literal("process_hand")
-                                .executes(context -> processHeldOreChunks(context.getSource())))
         );
     }
 
@@ -119,11 +111,11 @@ public class GeoVeinCommands {
                 level.getSeed() ^ ore.id().hashCode()
         );
 
-        int placed = 0;
-
         int xRadius = ore.length() / 2;
         int yRadius = ore.height() / 2;
         int zRadius = ore.width() / 2;
+
+        int placed = 0;
 
         for (int x = center.getX() - xRadius; x <= center.getX() + xRadius; x++) {
             for (int y = center.getY() - yRadius; y <= center.getY() + yRadius; y++) {
@@ -177,77 +169,32 @@ public class GeoVeinCommands {
 
         return placed;
     }
-    private static int processHeldOreChunks(CommandSourceStack source) {
-        if (!(source.getEntity() instanceof ServerPlayer player)) {
-            source.sendFailure(Component.literal("Only players can process held ore chunks."));
-            return 0;
+
+    private static Optional<Block> getOreBlockForY(OreDefinition ore, int y) {
+        String blockId = ore.sourceOreBlock();
+
+        if (y <= ore.deepslateBelowY() && !ore.deepslateOreBlock().isBlank()) {
+            blockId = ore.deepslateOreBlock();
         }
 
-        ItemStack heldStack = player.getMainHandItem();
+        ResourceLocation resourceLocation = ResourceLocation.parse(blockId);
 
-        if (!heldStack.is(ModItems.ORE_CHUNK.get())) {
-            source.sendFailure(Component.literal("Hold GeoVein ore chunks in your main hand."));
-            return 0;
-        }
-
-        String oreId = heldStack.getOrDefault(ModDataComponents.ORE_ID.get(), "unknown");
-        OreGrade grade = heldStack.getOrDefault(ModDataComponents.ORE_GRADE.get(), OreGrade.COMMON);
-
-        Optional<OreDefinition> oreOptional = OreDefinitionLoader.getById(oreId);
-
-        if (oreOptional.isEmpty()) {
-            source.sendFailure(Component.literal("Unknown ore chunk type: " + oreId));
-            return 0;
-        }
-
-        OreDefinition ore = oreOptional.get();
-
-        if (ore.processedItem().isBlank()) {
-            source.sendFailure(Component.literal("Ore has no processed_item configured: " + oreId));
-            return 0;
-        }
-
-        ResourceLocation outputItemId = ResourceLocation.parse(ore.processedItem());
-        Optional<Item> outputItemOptional = BuiltInRegistries.ITEM.getOptional(outputItemId);
-
-        if (outputItemOptional.isEmpty()) {
-            source.sendFailure(Component.literal("Unknown processed item: " + ore.processedItem()));
-            return 0;
-        }
-
-        int inputCount = heldStack.getCount();
-        int outputCount = (int) Math.floor(inputCount * grade.getYieldMultiplier());
-
-        if (outputCount <= 0) {
-            source.sendFailure(Component.literal(
-                    "Not enough " + grade.getDisplayName() + " " + ore.displayName()
-                            + " chunks to process. Try at least 4 Poor chunks."
-            ));
-            return 0;
-        }
-
-        heldStack.shrink(inputCount);
-
-        ItemStack outputStack = new ItemStack(outputItemOptional.get(), outputCount);
-
-        if (!player.addItem(outputStack)) {
-            player.drop(outputStack, false);
-        }
-
-        source.sendSuccess(
-                () -> Component.literal(
-                        "Processed " + inputCount + " "
-                                + grade.getDisplayName() + " "
-                                + ore.displayName()
-                                + " Ore Chunks into "
-                                + outputCount + " "
-                                + outputStack.getHoverName().getString()
-                ),
-                true
-        );
-
-        return outputCount;
+        return BuiltInRegistries.BLOCK.getOptional(resourceLocation);
     }
+
+    private static double calculateDebugDensity(double distance) {
+        if (distance <= 0.25) {
+            return 1.0;
+        }
+
+        double fadeProgress = (distance - 0.25) / 0.75;
+        double edgeDensity = 0.30;
+
+        double density = 1.0 - fadeProgress * (1.0 - edgeDensity);
+
+        return Math.clamp(density, 0.0, 1.0);
+    }
+
     private static boolean shouldReplace(BlockState state) {
         return state.is(Blocks.STONE)
                 || state.is(Blocks.DEEPSLATE)
@@ -259,28 +206,5 @@ public class GeoVeinCommands {
 
     private static String formatPos(BlockPos pos) {
         return pos.getX() + " " + pos.getY() + " " + pos.getZ();
-    }
-    private static double calculateDebugDensity(double distance) {
-        if (distance <= 0.25) {
-            return 1.0;
-        }
-
-        double fadeProgress = (distance - 0.25) / 0.75;
-        double edgeDensity = 0.30;
-
-        double density = 1.0 - fadeProgress * (1.0 - edgeDensity);
-
-        return Math.max(0.0, Math.min(1.0, density));
-    }
-    private static Optional<Block> getOreBlockForY(OreDefinition ore, int y) {
-        String blockId = ore.sourceOreBlock();
-
-        if (y <= ore.deepslateBelowY() && !ore.deepslateOreBlock().isBlank()) {
-            blockId = ore.deepslateOreBlock();
-        }
-
-        ResourceLocation resourceLocation = ResourceLocation.parse(blockId);
-
-        return BuiltInRegistries.BLOCK.getOptional(resourceLocation);
     }
 }
