@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import io.github.loganmartingreen.geovein.ore.OreChunkDropHandler;
 import io.github.loganmartingreen.geovein.worldgen.ModFeatures;
 import io.github.loganmartingreen.geovein.command.GeoVeinCommands;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
@@ -74,6 +75,7 @@ public class GeoVein {
         CREATIVE_MODE_TABS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(new OreChunkDropHandler());
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
