@@ -3,7 +3,7 @@ package io.github.loganmartingreen.geovein.ore;
 public enum OreGrade {
     POOR("Poor", 0.25f),
     COMMON("Common", 1.0f),
-    RICH("Rich", 1.75f),
+    RICH("Rich", 1.5f),
     NATIVE("Native", 3.0f);
 
     private final String displayName;

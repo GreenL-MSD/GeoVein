@@ -1,0 +1,19 @@
+{
+    "cookingtime":  200,
+    "experience":  0.7,
+    "ingredient":  {
+                       "components":  {
+                                          "geovein:ore_grade":  "NATIVE",
+                                          "geovein:ore_id":  "tin"
+                                      },
+                       "strict":  false,
+                       "items":  "geovein:ore_chunk",
+                       "type":  "neoforge:components"
+                   },
+    "type":  "minecraft:smelting",
+    "category":  "misc",
+    "result":  {
+                   "id":  "minecraft:raw_iron",
+                   "count":  3
+               }
+}
