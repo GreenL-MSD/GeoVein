@@ -13,6 +13,7 @@
     "category":  "misc",
     "result":  {
                    "components":  {
+                                      "minecraft:custom_model_data":  3100,
                                       "geovein:ore_id":  "iron"
                                   },
                    "id":  "geovein:ore_billet",

@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "minecraft:item/raw_iron"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 3000
+      },
+      "model": "geovein:item/ore_billets/copper"
+    }
+  ]
 }

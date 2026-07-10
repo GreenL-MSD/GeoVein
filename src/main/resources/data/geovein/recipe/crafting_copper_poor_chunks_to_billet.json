@@ -40,6 +40,7 @@
     "category":  "misc",
     "result":  {
                    "components":  {
+                                      "minecraft:custom_model_data":  3000,
                                       "geovein:ore_id":  "copper"
                                   },
                    "id":  "geovein:ore_billet",
