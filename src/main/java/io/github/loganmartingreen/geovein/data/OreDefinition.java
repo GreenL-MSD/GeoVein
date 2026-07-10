@@ -18,7 +18,8 @@ public record OreDefinition(
         int height,
         double density,
         int regionSizeChunks,
-        double spawnChancePerRegion
+        double spawnChancePerRegion,
+        OreDropSettings drops
 ) {
     public static final Codec<OreDefinition> CODEC =
             RecordCodecBuilder.create(instance -> instance.group(
@@ -33,6 +34,7 @@ public record OreDefinition(
                     Codec.STRING
                             .fieldOf("source_ore_block")
                             .forGetter(OreDefinition::sourceOreBlock),
+
                     Codec.STRING
                             .optionalFieldOf("deepslate_ore_block", "")
                             .forGetter(OreDefinition::deepslateOreBlock),
@@ -75,6 +77,10 @@ public record OreDefinition(
 
                     Codec.DOUBLE
                             .optionalFieldOf("spawn_chance_per_region", 0.30)
-                            .forGetter(OreDefinition::spawnChancePerRegion)
+                            .forGetter(OreDefinition::spawnChancePerRegion),
+
+                    OreDropSettings.CODEC
+                            .optionalFieldOf("drops", OreDropSettings.defaultSettings())
+                            .forGetter(OreDefinition::drops)
             ).apply(instance, OreDefinition::new));
 }
