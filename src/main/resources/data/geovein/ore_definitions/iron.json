@@ -2,6 +2,7 @@
   "id": "iron",
   "display_name": "Iron",
   "source_ore_block": "minecraft:iron_ore",
+  "processed_item": "minecraft:raw_iron",
   "deepslate_ore_block": "minecraft:deepslate_iron_ore",
   "deepslate_below_y": 0,
 

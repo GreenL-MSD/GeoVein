@@ -8,6 +8,7 @@ public record OreDefinition(
         String id,
         String displayName,
         String sourceOreBlock,
+        String processedItem,
         String deepslateOreBlock,
         int deepslateBelowY,
         VeinShape shape,
@@ -34,6 +35,10 @@ public record OreDefinition(
                     Codec.STRING
                             .fieldOf("source_ore_block")
                             .forGetter(OreDefinition::sourceOreBlock),
+
+                    Codec.STRING
+                            .optionalFieldOf("processed_item", "")
+                            .forGetter(OreDefinition::processedItem),
 
                     Codec.STRING
                             .optionalFieldOf("deepslate_ore_block", "")
