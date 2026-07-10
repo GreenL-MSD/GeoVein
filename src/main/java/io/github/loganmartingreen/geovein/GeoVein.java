@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
+import io.github.loganmartingreen.geovein.worldgen.ModFeatures;
 import io.github.loganmartingreen.geovein.command.GeoVeinCommands;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import io.github.loganmartingreen.geovein.data.OreDefinitionReloadListener;
@@ -66,8 +67,9 @@ public class GeoVein {
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public GeoVein(IEventBus modEventBus, ModContainer modContainer) {
-        ModDataComponents.register(modEventBus);
         ModItems.register(modEventBus);
+        ModDataComponents.register(modEventBus);
+        ModFeatures.register(modEventBus);
 
         CREATIVE_MODE_TABS.register(modEventBus);
 
