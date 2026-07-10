@@ -22,12 +22,10 @@
     "category":  "misc",
     "result":  {
                    "components":  {
-                                      "minecraft:custom_model_data":  9003,
-                                      "geovein:ore_grade":  "NATIVE",
                                       "geovein:ore_id":  "gold"
                                   },
-                   "id":  "geovein:ore_chunk",
-                   "count":  1
+                   "id":  "geovein:ore_billet",
+                   "count":  3
                },
     "type":  "minecraft:crafting_shapeless"
 }

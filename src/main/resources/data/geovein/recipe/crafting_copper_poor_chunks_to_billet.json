@@ -3,7 +3,7 @@
                         {
                             "components":  {
                                                "geovein:ore_grade":  "POOR",
-                                               "geovein:ore_id":  "iron"
+                                               "geovein:ore_id":  "copper"
                                            },
                             "strict":  false,
                             "items":  "geovein:ore_chunk",
@@ -12,7 +12,7 @@
                         {
                             "components":  {
                                                "geovein:ore_grade":  "POOR",
-                                               "geovein:ore_id":  "iron"
+                                               "geovein:ore_id":  "copper"
                                            },
                             "strict":  false,
                             "items":  "geovein:ore_chunk",
@@ -21,7 +21,7 @@
                         {
                             "components":  {
                                                "geovein:ore_grade":  "POOR",
-                                               "geovein:ore_id":  "iron"
+                                               "geovein:ore_id":  "copper"
                                            },
                             "strict":  false,
                             "items":  "geovein:ore_chunk",
@@ -30,7 +30,7 @@
                         {
                             "components":  {
                                                "geovein:ore_grade":  "POOR",
-                                               "geovein:ore_id":  "iron"
+                                               "geovein:ore_id":  "copper"
                                            },
                             "strict":  false,
                             "items":  "geovein:ore_chunk",
@@ -40,11 +40,9 @@
     "category":  "misc",
     "result":  {
                    "components":  {
-                                      "minecraft:custom_model_data":  2001,
-                                      "geovein:ore_grade":  "COMMON",
-                                      "geovein:ore_id":  "iron"
+                                      "geovein:ore_id":  "copper"
                                   },
-                   "id":  "geovein:ore_chunk",
+                   "id":  "geovein:ore_billet",
                    "count":  1
                },
     "type":  "minecraft:crafting_shapeless"

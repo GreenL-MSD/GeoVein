@@ -1,5 +1,6 @@
 package io.github.loganmartingreen.geovein;
 
+import io.github.loganmartingreen.geovein.item.OreBilletItem;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -63,6 +64,8 @@ public class GeoVein {
                     for (OreGrade grade : OreGrade.values()) {
                         output.accept(OreChunkItem.create(ore.id(), grade));
                     }
+
+                    output.accept(OreBilletItem.create(ore.id()));
                 }
             }).build());
     // The constructor for the mod class is the first code that is run when your mod is loaded.

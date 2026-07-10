@@ -1,19 +1,18 @@
 {
-    "cookingtime":  100,
+    "cookingtime":  200,
     "experience":  0.7,
     "ingredient":  {
                        "components":  {
-                                          "geovein:ore_grade":  "COMMON",
-                                          "geovein:ore_id":  "coal"
+                                          "geovein:ore_id":  "gold"
                                       },
                        "strict":  false,
-                       "items":  "geovein:ore_chunk",
+                       "items":  "geovein:ore_billet",
                        "type":  "neoforge:components"
                    },
-    "type":  "minecraft:blasting",
+    "type":  "minecraft:smelting",
     "category":  "misc",
     "result":  {
-                   "id":  "minecraft:coal",
+                   "id":  "minecraft:gold_ingot",
                    "count":  1
                }
 }

@@ -3,17 +3,16 @@
     "experience":  0.7,
     "ingredient":  {
                        "components":  {
-                                          "geovein:ore_grade":  "NATIVE",
-                                          "geovein:ore_id":  "copper"
+                                          "geovein:ore_id":  "tin"
                                       },
                        "strict":  false,
-                       "items":  "geovein:ore_chunk",
+                       "items":  "geovein:ore_billet",
                        "type":  "neoforge:components"
                    },
     "type":  "minecraft:blasting",
     "category":  "misc",
     "result":  {
-                   "id":  "minecraft:raw_copper",
-                   "count":  3
+                   "id":  "minecraft:iron_ingot",
+                   "count":  1
                }
 }

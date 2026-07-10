@@ -1,4 +1,5 @@
 {
   "itemGroup.geovein": "GeoVein",
-  "item.geovein.ore_chunk": "Ore Chunk"
+  "item.geovein.ore_chunk": "Ore Chunk",
+  "item.geovein.ore_billet": "Ore Billet"
 }

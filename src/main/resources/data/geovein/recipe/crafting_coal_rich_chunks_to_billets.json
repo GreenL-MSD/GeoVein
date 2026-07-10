@@ -3,7 +3,7 @@
                         {
                             "components":  {
                                                "geovein:ore_grade":  "RICH",
-                                               "geovein:ore_id":  "copper"
+                                               "geovein:ore_id":  "coal"
                                            },
                             "strict":  false,
                             "items":  "geovein:ore_chunk",
@@ -12,7 +12,7 @@
                         {
                             "components":  {
                                                "geovein:ore_grade":  "RICH",
-                                               "geovein:ore_id":  "copper"
+                                               "geovein:ore_id":  "coal"
                                            },
                             "strict":  false,
                             "items":  "geovein:ore_chunk",
@@ -22,12 +22,10 @@
     "category":  "misc",
     "result":  {
                    "components":  {
-                                      "minecraft:custom_model_data":  1003,
-                                      "geovein:ore_grade":  "NATIVE",
-                                      "geovein:ore_id":  "copper"
+                                      "geovein:ore_id":  "coal"
                                   },
-                   "id":  "geovein:ore_chunk",
-                   "count":  1
+                   "id":  "geovein:ore_billet",
+                   "count":  3
                },
     "type":  "minecraft:crafting_shapeless"
 }
