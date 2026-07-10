@@ -1,25 +1,75 @@
+# GeoVein
 
-Installation information
-=======
+GeoVein is a NeoForge Minecraft mod focused on replacing traditional small ore blobs with large, data-driven geological ore deposits.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+The goal is to make mining feel more like discovering and exploiting real mineral deposits: fewer discoveries, much larger yields, and ore quality that matters.
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+> Status: Early development / prototype
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+---
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+## Current Features
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+- NeoForge 1.21.1 mod setup
+- Universal `ore_chunk` item
+- Ore chunks store data using Minecraft data components
+- Four ore quality tiers:
+    - Poor
+    - Common
+    - Rich
+    - Native
+- Dynamic ore chunk names, for example:
+    - Poor Copper Ore Chunk
+    - Rich Iron Ore Chunk
+- Tooltips showing:
+    - Ore type
+    - Grade
+    - Yield multiplier
+- JSON-loaded ore definitions
+- Automatic ore definition reload listener
+- Support for adding new ore definitions through JSON
+- Grade-based item textures using custom model data
+- Copper, iron, and default grade textures
+
+---
+
+## Planned Features
+
+GeoVein is planned to become a full replacement ore generation system.
+
+Planned systems include:
+
+- Massive multi-chunk ore deposits
+- Configurable vein shapes:
+    - Ellipsoid
+    - Sphere
+    - Cone
+    - Sheet
+    - Pipe
+    - Branching vein
+- Ore grade based on distance from deposit core
+- Deposit density and falloff
+- Noise-based irregular ore bodies
+- JSON-configurable ore definitions
+- Modpack-friendly ore registration
+- Support for modded ores
+- Prospecting tools
+- Surface indicators
+- Optional replacement of vanilla ore generation
+
+---
+
+## Ore Grades
+
+GeoVein uses four ore grades:
+
+| Grade | Description | Yield Multiplier |
+|---|---|---:|
+| Poor | Low quality ore | 0.25x |
+| Common | Standard ore | 1.0x |
+| Rich | High quality ore | 1.75x |
+| Native | Very pure ore | 3.0x |
+
+These values may change during balancing.
+
+---
