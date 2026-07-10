@@ -78,15 +78,6 @@ public class GeoVeinDepositFeature extends Feature<NoneFeatureConfiguration> {
             int chunkMinX,
             int chunkMinZ
     ) {
-        ResourceLocation sourceBlockId = ResourceLocation.parse(deposit.ore().sourceOreBlock());
-        Optional<Block> blockOptional = BuiltInRegistries.BLOCK.getOptional(sourceBlockId);
-
-        if (blockOptional.isEmpty()) {
-            return 0;
-        }
-
-        Block oreBlock = blockOptional.get();
-
         int yRadius = Math.max(
                 deposit.length(),
                 Math.max(deposit.width(), deposit.height())
@@ -130,7 +121,13 @@ public class GeoVeinDepositFeature extends Feature<NoneFeatureConfiguration> {
                         continue;
                     }
 
-                    level.setBlock(pos, oreBlock.defaultBlockState(), 2);
+                    Optional<Block> oreBlockOptional = getOreBlockForY(deposit.ore(), pos.getY());
+
+                    if (oreBlockOptional.isEmpty()) {
+                        continue;
+                    }
+
+                    level.setBlock(pos, oreBlockOptional.get().defaultBlockState(), 2);
                     placed++;
                 }
             }
@@ -169,5 +166,16 @@ public class GeoVeinDepositFeature extends Feature<NoneFeatureConfiguration> {
                 || state.is(Blocks.ANDESITE)
                 || state.is(Blocks.DIORITE)
                 || state.is(Blocks.GRANITE);
+    }
+    private Optional<Block> getOreBlockForY(OreDefinition ore, int y) {
+        String blockId = ore.sourceOreBlock();
+
+        if (y <= ore.deepslateBelowY() && !ore.deepslateOreBlock().isBlank()) {
+            blockId = ore.deepslateOreBlock();
+        }
+
+        ResourceLocation resourceLocation = ResourceLocation.parse(blockId);
+
+        return BuiltInRegistries.BLOCK.getOptional(resourceLocation);
     }
 }

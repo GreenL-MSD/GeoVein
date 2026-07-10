@@ -2,6 +2,8 @@
   "id": "gold",
   "display_name": "Gold",
   "source_ore_block": "minecraft:gold_ore",
+  "deepslate_ore_block": "minecraft:deepslate_gold_ore",
+  "deepslate_below_y": 0,
 
   "shape": "pipe",
 

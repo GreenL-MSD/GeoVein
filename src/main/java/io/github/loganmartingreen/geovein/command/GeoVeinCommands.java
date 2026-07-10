@@ -102,31 +102,24 @@ public class GeoVeinCommands {
 
         OreDefinition ore = oreOptional.get();
 
-        ResourceLocation sourceBlockId = ResourceLocation.parse(ore.sourceOreBlock());
-
-        Optional<Block> blockOptional = BuiltInRegistries.BLOCK.getOptional(sourceBlockId);
-
-        if (blockOptional.isEmpty()) {
-            source.sendFailure(Component.literal("Unknown source block: " + ore.sourceOreBlock()));
-            return 0;
-        }
-
-        Block oreBlock = blockOptional.get();
-
         Deposit testDeposit = new Deposit(
                 ore,
                 center,
-                32,
-                18,
-                14,
+                ore.length(),
+                ore.width(),
+                ore.height(),
                 level.getSeed() ^ ore.id().hashCode()
         );
 
         int placed = 0;
 
-        for (int x = center.getX() - 20; x <= center.getX() + 20; x++) {
-            for (int y = center.getY() - 12; y <= center.getY() + 12; y++) {
-                for (int z = center.getZ() - 20; z <= center.getZ() + 20; z++) {
+        int xRadius = ore.length() / 2;
+        int yRadius = ore.height() / 2;
+        int zRadius = ore.width() / 2;
+
+        for (int x = center.getX() - xRadius; x <= center.getX() + xRadius; x++) {
+            for (int y = center.getY() - yRadius; y <= center.getY() + yRadius; y++) {
+                for (int z = center.getZ() - zRadius; z <= center.getZ() + zRadius; z++) {
                     BlockPos pos = new BlockPos(x, y, z);
 
                     if (!testDeposit.contains(pos)) {
@@ -151,7 +144,13 @@ public class GeoVeinCommands {
                         continue;
                     }
 
-                    level.setBlock(pos, oreBlock.defaultBlockState(), 2);
+                    Optional<Block> oreBlockOptional = getOreBlockForY(ore, pos.getY());
+
+                    if (oreBlockOptional.isEmpty()) {
+                        continue;
+                    }
+
+                    level.setBlock(pos, oreBlockOptional.get().defaultBlockState(), 2);
                     placed++;
                 }
             }
@@ -194,5 +193,16 @@ public class GeoVeinCommands {
         double density = 1.0 - fadeProgress * (1.0 - edgeDensity);
 
         return Math.max(0.0, Math.min(1.0, density));
+    }
+    private static Optional<Block> getOreBlockForY(OreDefinition ore, int y) {
+        String blockId = ore.sourceOreBlock();
+
+        if (y <= ore.deepslateBelowY() && !ore.deepslateOreBlock().isBlank()) {
+            blockId = ore.deepslateOreBlock();
+        }
+
+        ResourceLocation resourceLocation = ResourceLocation.parse(blockId);
+
+        return BuiltInRegistries.BLOCK.getOptional(resourceLocation);
     }
 }

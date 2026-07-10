@@ -2,6 +2,8 @@
   "id": "copper",
   "display_name": "Copper",
   "source_ore_block": "minecraft:copper_ore",
+  "deepslate_ore_block": "minecraft:deepslate_copper_ore",
+  "deepslate_below_y": 0,
 
   "shape": "ellipsoid",
 

@@ -2,6 +2,8 @@
   "id": "iron",
   "display_name": "Iron",
   "source_ore_block": "minecraft:iron_ore",
+  "deepslate_ore_block": "minecraft:deepslate_iron_ore",
+  "deepslate_below_y": 0,
 
   "shape": "ellipsoid",
 
