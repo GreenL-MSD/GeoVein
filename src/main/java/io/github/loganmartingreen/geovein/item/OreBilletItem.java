@@ -8,6 +8,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomModelData;
+import io.github.loganmartingreen.geovein.data.OreDefinition;
+import io.github.loganmartingreen.geovein.data.OreDefinitionLoader;
+import net.minecraft.core.component.DataComponents;
 
 import java.util.List;
 
@@ -49,9 +52,8 @@ public class OreBilletItem extends Item {
     }
 
     private static int getCustomModelData(String oreId) {
-        return switch (oreId) {
-            case "copper" -> 3000;
-            default -> 3999;
-        };
+        return OreDefinitionLoader.getById(oreId)
+                .map(OreDefinition::billetModelData)
+                .orElse(9100);
     }
 }

@@ -11,6 +11,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import org.jetbrains.annotations.NotNull;
+import io.github.loganmartingreen.geovein.data.OreDefinition;
+import io.github.loganmartingreen.geovein.data.OreDefinitionLoader;
 
 import java.util.List;
 
@@ -30,15 +32,18 @@ public class OreChunkItem extends Item {
     }
 
     private static int getCustomModelData(String oreId, OreGrade grade) {
-        String textureOreId = cleanOreIdForPath(oreId);
+        int base = OreDefinitionLoader.getById(oreId)
+                .map(OreDefinition::chunkModelDataBase)
+                .orElse(9000);
 
-        int oreBase = switch (textureOreId) {
-            case "copper" -> 1000;
-            case "iron" -> 2000;
-            default -> 9000;
+        int gradeIndex = switch (grade) {
+            case POOR -> 0;
+            case COMMON -> 1;
+            case RICH -> 2;
+            case NATIVE -> 3;
         };
 
-        return oreBase + getGradeIndex(grade);
+        return base + gradeIndex;
     }
 
     private static int getGradeIndex(OreGrade grade) {

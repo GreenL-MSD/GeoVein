@@ -1,32 +1,32 @@
 {
-    "ingredients":  [
-                        {
-                            "components":  {
-                                               "geovein:ore_grade":  "RICH",
-                                               "geovein:ore_id":  "iron"
-                                           },
-                            "strict":  false,
-                            "items":  "geovein:ore_chunk",
-                            "type":  "neoforge:components"
-                        },
-                        {
-                            "components":  {
-                                               "geovein:ore_grade":  "RICH",
-                                               "geovein:ore_id":  "iron"
-                                           },
-                            "strict":  false,
-                            "items":  "geovein:ore_chunk",
-                            "type":  "neoforge:components"
-                        }
-                    ],
-    "category":  "misc",
-    "result":  {
-                   "components":  {
-                                      "minecraft:custom_model_data":  3100,
-                                      "geovein:ore_id":  "iron"
-                                  },
-                   "id":  "geovein:ore_billet",
-                   "count":  3
-               },
-    "type":  "minecraft:crafting_shapeless"
+  "ingredients": [
+    {
+      "components": {
+        "geovein:ore_grade": "RICH",
+        "geovein:ore_id": "iron"
+      },
+      "strict": false,
+      "items": "geovein:ore_chunk",
+      "type": "neoforge:components"
+    },
+    {
+      "components": {
+        "geovein:ore_grade": "RICH",
+        "geovein:ore_id": "iron"
+      },
+      "strict": false,
+      "items": "geovein:ore_chunk",
+      "type": "neoforge:components"
+    }
+  ],
+  "category": "misc",
+  "result": {
+    "components": {
+      "minecraft:custom_model_data": 2100,
+      "geovein:ore_id": "iron"
+    },
+    "id": "geovein:ore_billet",
+    "count": 3
+  },
+  "type": "minecraft:crafting_shapeless"
 }

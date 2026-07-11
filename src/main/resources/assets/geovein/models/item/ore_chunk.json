@@ -53,6 +53,54 @@
       },
       "model": "geovein:item/ore_chunks/iron/native"
     },
+    {
+      "predicate": {
+        "custom_model_data": 3000
+      },
+      "model": "geovein:item/ore_chunks/gold/poor"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3001
+      },
+      "model": "geovein:item/ore_chunks/gold/common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3002
+      },
+      "model": "geovein:item/ore_chunks/gold/rich"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3003
+      },
+      "model": "geovein:item/ore_chunks/gold/native"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4000
+      },
+      "model": "geovein:item/ore_chunks/coal/poor"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4001
+      },
+      "model": "geovein:item/ore_chunks/coal/common"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4002
+      },
+      "model": "geovein:item/ore_chunks/coal/rich"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4003
+      },
+      "model": "geovein:item/ore_chunks/coal/native"
+    },
 
     {
       "predicate": {

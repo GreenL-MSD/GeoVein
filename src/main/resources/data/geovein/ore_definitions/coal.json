@@ -1,51 +1,53 @@
 {
-    "id":  "coal",
-    "display_name":  "Coal",
-    "source_ore_block":  "minecraft:coal_ore",
-    "processed_item":  "minecraft:coal",
-    "deepslate_ore_block":  "minecraft:deepslate_coal_ore",
-    "deepslate_below_y":  0,
-    "shape":  "sheet",
-    "min_y":  -16,
-    "max_y":  96,
-    "length":  320,
-    "width":  160,
-    "height":  16,
-    "density":  0.35,
-    "region_size_chunks":  32,
-    "spawn_chance_per_region":  0.55,
-    "drops":  {
-                  "min_chunks_per_block":  4,
-                  "max_chunks_per_block":  4,
-                  "grade_bands":  [
-                                      {
-                                          "max_distance":  0.25,
-                                          "poor":  0.0833,
-                                          "common":  0.0833,
-                                          "rich":  0.0834,
-                                          "native":  0.75
-                                      },
-                                      {
-                                          "max_distance":  0.50,
-                                          "poor":  0.0667,
-                                          "common":  0.0667,
-                                          "rich":  0.80,
-                                          "native":  0.0666
-                                      },
-                                      {
-                                          "max_distance":  0.75,
-                                          "poor":  0.0333,
-                                          "common":  0.90,
-                                          "rich":  0.0334,
-                                          "native":  0.0333
-                                      },
-                                      {
-                                          "max_distance":  1.00,
-                                          "poor":  1.00,
-                                          "common":  0.00,
-                                          "rich":  0.00,
-                                          "native":  0.00
-                                      }
-                                  ]
-              }
+  "id": "coal",
+  "display_name": "Coal",
+  "source_ore_block": "minecraft:coal_ore",
+  "processed_item": "minecraft:coal",
+  "deepslate_ore_block": "minecraft:deepslate_coal_ore",
+  "deepslate_below_y": 0,
+  "chunk_model_data_base": 4000,
+  "billet_model_data": 4100,
+  "shape": "ellipsoid",
+  "min_y": -48,
+  "max_y": 80,
+  "length": 180,
+  "width": 60,
+  "height": 35,
+  "density": 0.35,
+  "region_size_chunks": 20,
+  "spawn_chance_per_region": 0.45,
+  "drops":  {
+    "min_chunks_per_block":  4,
+    "max_chunks_per_block":  4,
+    "grade_bands":  [
+      {
+        "max_distance":  0.25,
+        "poor":  0.0833,
+        "common":  0.0833,
+        "rich":  0.0834,
+        "native":  0.75
+      },
+      {
+        "max_distance":  0.50,
+        "poor":  0.0667,
+        "common":  0.0667,
+        "rich":  0.80,
+        "native":  0.0666
+      },
+      {
+        "max_distance":  0.75,
+        "poor":  0.0333,
+        "common":  0.90,
+        "rich":  0.0334,
+        "native":  0.0333
+      },
+      {
+        "max_distance":  1.00,
+        "poor":  1.00,
+        "common":  0.00,
+        "rich":  0.00,
+        "native":  0.00
+      }
+    ]
+  }
 }

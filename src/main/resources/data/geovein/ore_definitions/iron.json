@@ -5,6 +5,8 @@
     "processed_item":  "minecraft:iron_ingot",
     "deepslate_ore_block":  "minecraft:deepslate_iron_ore",
     "deepslate_below_y":  0,
+   "chunk_model_data_base": 2000,
+   "billet_model_data": 2100,
     "shape":  "ellipsoid",
     "min_y":  -64,
     "max_y":  48,

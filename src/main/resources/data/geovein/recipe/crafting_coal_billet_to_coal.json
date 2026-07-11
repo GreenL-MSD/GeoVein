@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "type": "neoforge:components",
+      "items": "geovein:ore_billet",
+      "strict": false,
+      "components": {
+        "geovein:ore_id": "coal"
+      }
+    }
+  ],
+  "result": {
+    "id": "minecraft:coal",
+    "count": 1
+  }
+}

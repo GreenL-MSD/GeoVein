@@ -1,23 +1,23 @@
 {
-    "ingredients":  [
-                        {
-                            "components":  {
-                                               "geovein:ore_grade":  "NATIVE",
-                                               "geovein:ore_id":  "gold"
-                                           },
-                            "strict":  false,
-                            "items":  "geovein:ore_chunk",
-                            "type":  "neoforge:components"
-                        }
-                    ],
-    "category":  "misc",
-    "result":  {
-                   "components":  {
-                                      "minecraft:custom_model_data":  3200,
-                                      "geovein:ore_id":  "gold"
-                                  },
-                   "id":  "geovein:ore_billet",
-                   "count":  3
-               },
-    "type":  "minecraft:crafting_shapeless"
+  "ingredients": [
+    {
+      "components": {
+        "geovein:ore_grade": "NATIVE",
+        "geovein:ore_id": "gold"
+      },
+      "strict": false,
+      "items": "geovein:ore_chunk",
+      "type": "neoforge:components"
+    }
+  ],
+  "category": "misc",
+  "result": {
+    "components": {
+      "minecraft:custom_model_data": 3100,
+      "geovein:ore_id": "gold"
+    },
+    "id": "geovein:ore_billet",
+    "count": 3
+  },
+  "type": "minecraft:crafting_shapeless"
 }

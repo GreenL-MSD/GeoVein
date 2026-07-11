@@ -11,17 +11,56 @@ public record OreDefinition(
         String processedItem,
         String deepslateOreBlock,
         int deepslateBelowY,
-        VeinShape shape,
-        int minY,
-        int maxY,
-        int length,
-        int width,
-        int height,
-        double density,
-        int regionSizeChunks,
-        double spawnChancePerRegion,
+
+        OreModelSettings modelSettings,
+        OreGenerationSettings generationSettings,
+
         OreDropSettings drops
 ) {
+    public int chunkModelDataBase() {
+        return modelSettings.chunkModelDataBase();
+    }
+
+    public int billetModelData() {
+        return modelSettings.billetModelData();
+    }
+
+    public VeinShape shape() {
+        return generationSettings.shape();
+    }
+
+    public int minY() {
+        return generationSettings.minY();
+    }
+
+    public int maxY() {
+        return generationSettings.maxY();
+    }
+
+    public int length() {
+        return generationSettings.length();
+    }
+
+    public int width() {
+        return generationSettings.width();
+    }
+
+    public int height() {
+        return generationSettings.height();
+    }
+
+    public double density() {
+        return generationSettings.density();
+    }
+
+    public int regionSizeChunks() {
+        return generationSettings.regionSizeChunks();
+    }
+
+    public double spawnChancePerRegion() {
+        return generationSettings.spawnChancePerRegion();
+    }
+
     public static final Codec<OreDefinition> CODEC =
             RecordCodecBuilder.create(instance -> instance.group(
                     Codec.STRING
@@ -48,41 +87,11 @@ public record OreDefinition(
                             .optionalFieldOf("deepslate_below_y", 0)
                             .forGetter(OreDefinition::deepslateBelowY),
 
-                    VeinShape.CODEC
-                            .optionalFieldOf("shape", VeinShape.ELLIPSOID)
-                            .forGetter(OreDefinition::shape),
+                    OreModelSettings.MAP_CODEC
+                            .forGetter(OreDefinition::modelSettings),
 
-                    Codec.INT
-                            .optionalFieldOf("min_y", -48)
-                            .forGetter(OreDefinition::minY),
-
-                    Codec.INT
-                            .optionalFieldOf("max_y", 32)
-                            .forGetter(OreDefinition::maxY),
-
-                    Codec.INT
-                            .optionalFieldOf("length", 240)
-                            .forGetter(OreDefinition::length),
-
-                    Codec.INT
-                            .optionalFieldOf("width", 80)
-                            .forGetter(OreDefinition::width),
-
-                    Codec.INT
-                            .optionalFieldOf("height", 40)
-                            .forGetter(OreDefinition::height),
-
-                    Codec.DOUBLE
-                            .optionalFieldOf("density", 0.30)
-                            .forGetter(OreDefinition::density),
-
-                    Codec.INT
-                            .optionalFieldOf("region_size_chunks", 32)
-                            .forGetter(OreDefinition::regionSizeChunks),
-
-                    Codec.DOUBLE
-                            .optionalFieldOf("spawn_chance_per_region", 0.30)
-                            .forGetter(OreDefinition::spawnChancePerRegion),
+                    OreGenerationSettings.MAP_CODEC
+                            .forGetter(OreDefinition::generationSettings),
 
                     OreDropSettings.CODEC
                             .optionalFieldOf("drops", OreDropSettings.defaultSettings())

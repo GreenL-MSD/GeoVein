@@ -6,9 +6,39 @@
   "overrides": [
     {
       "predicate": {
-        "custom_model_data": 3000
+        "custom_model_data": 1100
       },
       "model": "geovein:item/ore_billets/copper"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2100
+      },
+      "model": "geovein:item/ore_billets/iron"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3100
+      },
+      "model": "geovein:item/ore_billets/gold"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4100
+      },
+      "model": "geovein:item/ore_billets/coal"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5100
+      },
+      "model": "geovein:item/ore_billets/emerald"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 9100
+      },
+      "model": "geovein:item/ore_billets/default"
     }
   ]
 }

@@ -5,6 +5,8 @@
     "processed_item":  "minecraft:gold_ingot",
     "deepslate_ore_block":  "minecraft:deepslate_gold_ore",
     "deepslate_below_y":  0,
+   "chunk_model_data_base": 3000,
+   "billet_model_data": 3100,
     "shape":  "pipe",
     "min_y":  -64,
     "max_y":  16,
