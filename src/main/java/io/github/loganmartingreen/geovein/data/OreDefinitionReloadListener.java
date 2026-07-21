@@ -9,7 +9,9 @@ import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import org.slf4j.Logger;
-
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -48,7 +50,18 @@ public class OreDefinitionReloadListener implements ResourceManagerReloadListene
                 LOGGER.error("Failed to load ore definition: {}", location, exception);
             }
         }
+        ConfigOreDefinitionLoader.exportMissingDefaults(definitions);
 
-        OreDefinitionLoader.replaceLoadedDefinitions(definitions);
+        Map<String, OreDefinition> mergedDefinitions = new LinkedHashMap<>();
+
+        for (OreDefinition definition : definitions) {
+            mergedDefinitions.put(definition.id(), definition);
+        }
+
+        for (OreDefinition configDefinition : ConfigOreDefinitionLoader.loadConfigDefinitions()) {
+            mergedDefinitions.put(configDefinition.id(), configDefinition);
+        }
+
+        OreDefinitionLoader.replaceLoadedDefinitions(new ArrayList<>(mergedDefinitions.values()));
     }
 }
