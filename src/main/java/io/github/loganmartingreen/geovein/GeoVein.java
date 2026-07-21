@@ -2,7 +2,7 @@ package io.github.loganmartingreen.geovein;
 
 import io.github.loganmartingreen.geovein.item.OreBilletItem;
 import org.slf4j.Logger;
-
+import io.github.loganmartingreen.geovein.data.ConfigResourcePackLoader;
 import com.mojang.logging.LogUtils;
 
 import io.github.loganmartingreen.geovein.ore.OreChunkDropHandler;
@@ -61,7 +61,7 @@ public class GeoVein {
         ModItems.register(modEventBus);
         ModDataComponents.register(modEventBus);
         ModFeatures.register(modEventBus);
-
+        modEventBus.addListener(ConfigResourcePackLoader::addPackFinders);
         CREATIVE_MODE_TABS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);

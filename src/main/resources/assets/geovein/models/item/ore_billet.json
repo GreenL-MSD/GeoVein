@@ -29,7 +29,6 @@
       "model": "geovein:item/ore_billets/coal"
     },
     {
-    {
       "predicate": {
         "custom_model_data": 9100
       },
